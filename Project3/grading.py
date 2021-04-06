@@ -14,7 +14,6 @@
 
 "Common code for autograders"
 
-import cgi
 import time
 import sys
 import json
@@ -22,6 +21,14 @@ import traceback
 from collections import defaultdict
 import util
 
+from platform import python_version_tuple 
+v_tuple = python_version_tuple(); 
+if v_tuple[0] != '3': 
+    raise SystemError('Please use python 3') 
+if int(v_tuple[1]) >= 8: 
+    from cgi import html as cgi
+else: 
+    import cgi
 
 class Grades:
     "A data structure for project grades, along with formatting code to display them"
